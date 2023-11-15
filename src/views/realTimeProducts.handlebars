@@ -1,0 +1,68 @@
+<div>
+    <h1>Realtime Productos</h1>
+
+    <form id="productForm" method="POST" action="/realtimeproducts">
+
+
+        <label for="productTitle">Título:</label>
+        <input
+            type="text"
+            id="productTitle"
+            name="title"
+            placeholder="Título del producto"
+        />
+
+    <label for="productDescription">Descripción:</label>
+    <textarea
+        id="productDescription"
+        name="description"
+        placeholder="Descripción del producto"
+    ></textarea>
+
+    <label for="productPrice">Precio:</label>
+    <input
+        type="number"
+        id="productPrice"
+        name="price"
+        step="0.01"
+        placeholder="Precio del producto"
+    />
+
+    <label for="productCode">Código:</label>
+    <input
+        type="text"
+        id="productCode"
+        name="code"
+        placeholder="Código del producto"
+    />
+
+    <label for="productStock">Stock:</label>
+    <input
+        type="number"
+        id="productStock"
+        name="stock"
+        placeholder="Stock del producto"
+    />
+
+    <label for="productId">ID:</label>
+    <input
+        type="number"
+        id="productId"
+        name="id"
+        placeholder="id del producto"
+    />
+
+    <button id="productBtn" type="submit">Agregar</button>
+    </form>
+    <ul id="productList">
+        {{#each products}}
+        <li>
+            <p>Título: {{title}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Precio: {{price}}</p>
+            <p>id: {{id}}</p>
+            <button class="eliminarBtn" data-product-id="{{this.id}}">Eliminar</button>
+        </li>
+        {{/each}}
+    </ul>
+</div>
