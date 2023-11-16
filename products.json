@@ -20,5 +20,21 @@
     "stock": 25,
     "status": true,
     "category": "producto"
+  },
+  {
+    "title": "prod c ",
+    "price": "70",
+    "description": "hrghfgbf",
+    "code": "abc130",
+    "stock": "8",
+    "id": "3"
+  },
+  {
+    "title": "prod d ",
+    "price": "60",
+    "description": "hnfbdv",
+    "code": "abc132",
+    "stock": "5",
+    "id": "4"
   }
 ]

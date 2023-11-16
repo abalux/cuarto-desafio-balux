@@ -41,28 +41,34 @@ document.getElementById("productForm").addEventListener('submit', (event) => {
     location.reload();
 })
 
-socket.on("nuevoProductoAgregado", (newProduct) => {
-    const productList = document.getElementById("realTimeList");
-    const li = document.createElement("li");
-    li.textContent = newProduct.title;
-    productList.appendChild(li);
-    
-})
-
-
+// Obtener la lista de productos inicial desde el servidor
 socket.on("initialProductList", (productList) => {
     updateProductList(productList);
-});  
-
-
-function updateProductList(products) {
-    const productList = document.getElementById("realTimeList");
+  
+  
+  });
+  
+  
+  // Agregar un nuevo producto a la lista
+  socket.on("nuevoProductoAgregado", (newProduct) => {
+    const productList = document.getElementById("productList");
+    const li = document.createElement("li");
+    li.textContent = newProduct.title;
+  
+    productList.appendChild(li);
+  });
+  
+  
+  
+  // Actualizar la lista de productos
+  function updateProductList(products) {
+    const productList = document.getElementById("productList");
     productList.innerHTML = "";
-
+  
     products.forEach((product) => {
-        const div = document.createElement("div");
-        div.innerHTML = `
-
+      const div = document.createElement("div");
+      div.innerHTML = `
+      
         <p>Id: ${product.id}</p>
         <p>Título: ${product.title}</p>
         <p>Descripción: ${product.description}</p>
@@ -70,9 +76,10 @@ function updateProductList(products) {
         <p>Código: ${product.code}</p>
         <p>Stock: ${product.stock}</p>
         <button class="eliminarBtn" data-product-id="{{this.id}}">Eliminar</button>
-    `;
-
-    productList.appendChild(div);
+      `;
+  
+  
+      productList.appendChild(div);
     });
-
-}
+  
+  }
