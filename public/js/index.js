@@ -1,6 +1,6 @@
 const socket = io();
 
-socket.emit("connection", "nuevo cliente conectado");
+socket.emit("connect", "nuevo cliente conectado");
 
 document.getElementById("productForm").addEventListener('submit', (event) => {
     event.preventDefault();
@@ -42,11 +42,37 @@ document.getElementById("productForm").addEventListener('submit', (event) => {
 })
 
 socket.on("nuevoProductoAgregado", (newProduct) => {
-    const productList = document.getElementById("productList");
+    const productList = document.getElementById("realTimeList");
     const li = document.createElement("li");
     li.textContent = newProduct.title;
-
     productList.appendChild(li);
-});
+    
+})
 
 
+socket.on("initialProductList", (productList) => {
+    updateProductList(productList);
+});  
+
+
+function updateProductList(products) {
+    const productList = document.getElementById("realTimeList");
+    productList.innerHTML = "";
+
+    products.forEach((product) => {
+        const div = document.createElement("div");
+        div.innerHTML = `
+
+        <p>Id: ${product.id}</p>
+        <p>Título: ${product.title}</p>
+        <p>Descripción: ${product.description}</p>
+        <p>Precio: ${product.price}</p>
+        <p>Código: ${product.code}</p>
+        <p>Stock: ${product.stock}</p>
+        <button class="eliminarBtn" data-product-id="{{this.id}}">Eliminar</button>
+    `;
+
+    productList.appendChild(div);
+    });
+
+}

@@ -1,16 +1,16 @@
 <div>
     <h1>Realtime Productos</h1>
 
-    <form id="productForm" method="POST" action="/realtimeproducts">
+    <form id="productForm" method="POST" action="/realTimeProducts">
 
 
-        <label for="productTitle">Título:</label>
-        <input
-            type="text"
-            id="productTitle"
-            name="title"
-            placeholder="Título del producto"
-        />
+    <label for="productTitle">Título:</label>
+    <input
+        type="text"
+        id="productTitle"
+        name="title"
+        placeholder="Título del producto"
+    />
 
     <label for="productDescription">Descripción:</label>
     <textarea
@@ -54,7 +54,7 @@
 
     <button id="productBtn" type="submit">Agregar</button>
     </form>
-    <ul id="productList">
+    <ul id="realTimeList">
         {{#each products}}
         <li>
             <p>Título: {{title}}</p>
